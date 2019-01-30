@@ -16,7 +16,7 @@
                 }
  
 -               return Pair.of(s, ((Optional)(taggedchoicetype1.types().get(s)).read(typed.write()).getSecond()).orElseThrow(() -> {
-+               return Pair.of(s, ((taggedchoicetype1.types().get(s)).read(typed.write()).getSecond()).orElseThrow(() -> {
++               return Pair.of(s, ((taggedchoicetype1.types().get(s)).read(typed.write()).getSecond()).<IllegalStateException>orElseThrow(() -> {
                    return new IllegalStateException("Could not read the new minecart.");
                 }));
              }
