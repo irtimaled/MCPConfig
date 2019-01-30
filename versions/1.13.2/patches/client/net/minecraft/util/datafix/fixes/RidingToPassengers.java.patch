@@ -1,11 +1,17 @@
 --- a/net/minecraft/util/datafix/fixes/RidingToPassengers.java
 +++ b/net/minecraft/util/datafix/fixes/RidingToPassengers.java
-@@ -69,7 +69,7 @@
+@@ -64,12 +64,12 @@
+                   optional = Optional.<Pair<String, Pair<Either<List<NewEntityTree>, Unit>, Entity>>>of(Pair.of(TypeReferences.field_211298_n.typeName(), Pair.of(either, (pair.getSecond()).getSecond())));
+                   Optional<OldEntityTree> optional1 = ((Either)((Pair)pair.getSecond()).getFirst()).left();
+                   if (!optional1.isPresent()) {
+-                     return optional.orElseThrow(() -> {
++                     return optional.<IllegalStateException>orElseThrow(() -> {
+                         return new IllegalStateException("Should always have an entity tree here");
                       });
                    }
  
 -                  pair = (Pair)(new Typed(p_206340_3_, p_209760_5_, optional1.get())).getOptional(opticfinder).orElseThrow(() -> {
-+                  pair = (Pair)(new Typed<OldEntityTree>(p_206340_3_, p_209760_5_, optional1.get())).getOptional(opticfinder).orElseThrow(() -> {
++                  pair = (Pair)(new Typed<OldEntityTree>(p_206340_3_, p_209760_5_, optional1.get())).getOptional(opticfinder).<IllegalStateException>orElseThrow(() -> {
                       return new IllegalStateException("Should always have an entity here");
                    });
                 }
